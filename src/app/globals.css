@@ -1,0 +1,158 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ---------------------------------------------------------------------------
+   Sistema de design do PRUMO + camada shadcn/ui (aditiva)
+
+   Identidade PRUMO: base neutra preto/branco com o verde da marca como acento
+   (o prumo). Os tokens legados (surface/accent/muted/positive/negative) seguem
+   com os mesmos nomes, apenas repontados para a nova paleta — assim todas as
+   telas herdam o visual novo sem precisar de mudança individual.
+
+   Verde da marca: #17c964 (light) / #22e178 (dark). Tinta: quase-preto #0a0a0a.
+--------------------------------------------------------------------------- */
+:root {
+  /* --- base neutra (light) --- */
+  --background: #f7f7f8; /* canvas */
+  --surface: #ffffff; /* cards */
+  --surface-2: #f1f1f3; /* linhas alternadas / inputs */
+  --foreground: #0a0a0a; /* tinta principal (quase-preto) */
+  --muted: #6b7280; /* texto secundário */
+  --border: #e6e6e9;
+  --accent: #12a150; /* verde da marca (contraste em texto sobre branco) */
+  --accent-hover: #0d8a44;
+  --accent-foreground: #052e16;
+  --positive: #17c964;
+  --negative: #ef4444;
+  --ring: #17c964;
+  --radius: 0.875rem;
+
+  /* --- shadcn/ui --- */
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --primary: #17c964; /* verde do prumo */
+  --primary-foreground: #052e16; /* tinta escura sobre verde (como o ícone) */
+  --secondary: #f1f1f3;
+  --secondary-foreground: #0a0a0a;
+  --muted-foreground: #6b7280;
+  --shadcn-accent: #eafaf0; /* verde bem claro para hover/superfícies */
+  --shadcn-accent-foreground: #0a0a0a;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --input: #e6e6e9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* --- base neutra (dark) --- */
+    --background: #0a0a0a;
+    --surface: #141414;
+    --surface-2: #1c1c1c;
+    --foreground: #ededed;
+    --muted: #a1a1aa;
+    --border: #262626;
+    --accent: #22e178; /* verde vivo sobre o quase-preto */
+    --accent-hover: #43ea90;
+    --accent-foreground: #052e16;
+    --positive: #22e178;
+    --negative: #f87171;
+    --ring: #22e178;
+
+    /* --- shadcn/ui (dark) --- */
+    --card: #141414;
+    --card-foreground: #ededed;
+    --popover: #141414;
+    --popover-foreground: #ededed;
+    --primary: #22e178;
+    --primary-foreground: #052e16;
+    --secondary: #1c1c1c;
+    --secondary-foreground: #ededed;
+    --muted-foreground: #a1a1aa;
+    --shadcn-accent: #13291d;
+    --shadcn-accent-foreground: #ededed;
+    --destructive: #f87171;
+    --destructive-foreground: #0a0a0a;
+    --input: #262626;
+  }
+}
+
+@theme inline {
+  /* legado */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --radius-app: var(--radius);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* shadcn/ui */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* shadcn/ui: borda padrão pelos tokens (componentes ui/ usam `border` puro). */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* Tipografia da marca: Geist Mono como fonte principal da interface. */
+  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Foco visível consistente para tudo que é interativo (acessibilidade). */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

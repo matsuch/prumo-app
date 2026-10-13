@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+# Só leitura: o CI não publica nada, e PRs de forks não devem ganhar escrita.
+permissions:
+  contents: read
+
+# Cancel superseded runs on the same ref to save minutes.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        # Usa `npm install` (não `npm ci`): o lockfile é gerado no Windows e não
+        # captura o subtree de deps opcionais só-Linux (ex.: o fallback wasm do
+        # @tailwindcss/oxide, que puxa @emnapi/*), então `npm ci` (estrito) quebra
+        # no runner Linux. `npm install` resolve as deps da plataforma. Mesmo
+        # comportamento que o build da Vercel.
+        run: npm install --no-audit --no-fund
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # Depois do build: o `next build` gera os tipos globais do Next (.next/types,
+      # ex.: LayoutProps/PageProps) que o tsc precisa. Rodar tsc antes falha num
+      # checkout limpo com "Cannot find name 'LayoutProps'".
+      - name: Typecheck
+        run: npx tsc --noEmit
