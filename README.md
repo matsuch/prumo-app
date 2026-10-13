@@ -19,6 +19,10 @@
 
 ---
 
+<p align="center">
+  <a href="https://prumo-demo-kappa.vercel.app"><b>▶ Abrir o demo</b></a> (dados fictícios, sem login)
+</p>
+
 ## Sobre o projeto
 
 O PRUMO nasceu de uma pergunta simples: **"onde eu chego daqui a 10 anos, e o que muda se eu ajustar hoje?"**
