@@ -71,7 +71,7 @@ export function buildSeed(userId: string, today = new Date()): DemoTables {
     { ticker: "WEGE3", quantidade: 150, preco_compra: 38.9 },
     { ticker: "PETR4", quantidade: 200, preco_compra: 31.2 },
     { ticker: "BBAS3", quantidade: 250, preco_compra: 24.6 },
-    { ticker: "TAEE11", quantidade: 180, preco_compra: 33.8 },
+    { ticker: "EGIE3", quantidade: 160, preco_compra: 39.4 },
     { ticker: "HGLG11", quantidade: 40, preco_compra: 158 },
     { ticker: "KNCR11", quantidade: 60, preco_compra: 98.5 },
     { ticker: "MXRF11", quantidade: 500, preco_compra: 9.9 },

@@ -6,7 +6,7 @@ export const DEMO_QUOTES: Record<string, number> = {
   WEGE3: 41.5,
   PETR4: 34.1,
   BBAS3: 27.3,
-  TAEE11: 35.6,
+  EGIE3: 41.8,
   HGLG11: 161.4,
   KNCR11: 103.2,
   MXRF11: 9.62,

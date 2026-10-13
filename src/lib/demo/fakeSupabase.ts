@@ -25,7 +25,7 @@ export const DEMO_USER = {
   created_at: "2025-01-01T00:00:00.000Z",
 };
 
-const STORAGE_KEY = "prumo-demo-v1";
+const STORAGE_KEY = "prumo-demo-v2"; // trocar a versão quando o seed mudar
 
 const SERVER_ROW_LIMIT = 500;
 const isBrowser = typeof window !== "undefined";
